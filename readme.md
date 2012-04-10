@@ -1,5 +1,7 @@
 # Simple node.js asynchronous file uploader
+
 Usage:
+
 * Clone repository
 * install following dependencies:
 	* socket.io
