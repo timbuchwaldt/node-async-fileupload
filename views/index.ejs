@@ -12,11 +12,11 @@
 </script>
 <body>
 
-	<form  enctype="multipart/form-data" target="hidden_upload" method="POST" action="/upload/<%= uuid %>">
+<form  enctype="multipart/form-data" target="hidden_upload" method="POST" action="/upload/<%= uuid %>">
 <input type="hidden" name="uuid" val="123">
 <input type="file" name="file">
 <input type="submit">
 </form>
-<iframe src="" id="hidden_upload"></iframe>
+<iframe style="display:none" src="" id="hidden_upload"></iframe>
 </body>
 </html>

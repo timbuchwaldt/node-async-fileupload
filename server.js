@@ -2,6 +2,7 @@ var express = require('express');
 var app = express.createServer();
 var formidable = require('formidable');
 var util = require('util');
+var uuid = require('node-uuid');
 app.listen(3000);
 var io = require('socket.io').listen(app);
 app.set('view options', {
@@ -9,7 +10,7 @@ app.set('view options', {
 });
 
 app.get('/', function(req, res){
-    res.render('index.ejs',{uuid:123});
+    res.render('index.ejs',{uuid:uuid.v4()});
 });
 app.post('/upload/:uid',function(req,res){
 	var form = new formidable.IncomingForm();
