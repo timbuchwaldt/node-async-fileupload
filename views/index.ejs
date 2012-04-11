@@ -1,22 +1,25 @@
 <html>
-<head>
-	<title>Uploader</title>
-</head>
-<script type="text/javascript" src="/jquery.js"></script>
-<script type="text/javascript" src="/socket.io/socket.io.js"></script>
-<script type="text/javascript">
-	var socket = io.connect('http://localhost:3000');
-	socket.on('<%= uuid %>', function (data) {
-    	console.log(data.progress);
-	});	  
-</script>
-<body>
-
-<form  enctype="multipart/form-data" target="hidden_upload" method="POST" action="/upload/<%= uuid %>">
-<input type="hidden" name="uuid" val="123">
-<input type="file" name="file">
-<input type="submit">
-</form>
-<iframe style="display:none" src="" id="hidden_upload"></iframe>
-</body>
+	<head>
+		<title>Uploader</title>
+	</head>
+	<body>
+		<script type="text/javascript" src="/jquery.js"></script>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript">
+			var socket = io.connect('http://localhost:3000');
+			socket.on('<%= uuid %>', function (data) {
+		      $('#progressBar').css({'width':(3*data.progress)});
+		      if(data.httpStatus >= 400)
+		        alert(data.httpStatus);
+		  	});     
+		</script>
+		<!-- //-->
+		<form  enctype="multipart/form-data" target="hidden_upload" method="POST" action="/upload/<%= uuid %>">
+			<input type="hidden" name="uuid" val="123">
+			<input type="file" name="file">
+			<input type="submit">
+		</form>
+		<div id="progressBar" style="background:#000;width:1px;height:10px;"></div>
+		<iframe style="display:none" src="" id="hidden_upload"></iframe>
+	</body>
 </html>
